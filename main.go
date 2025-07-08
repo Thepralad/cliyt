@@ -1,6 +1,8 @@
 package main
 
 import (
+	"log"
+	"github.com/joho/godotenv"
 	"bufio"
 	"encoding/json"
 	"fmt"
@@ -11,6 +13,11 @@ import (
 	"strings"
 )
 
+func init() {
+    if err := godotenv.Load(); err != nil {
+        log.Println("No .env file found")
+    }
+}
 var videoURLS []string
 var maxResults int
 
@@ -37,7 +44,7 @@ type VideoDetails struct {
 
 func apiRequest(query string) *YouTubeResponse {
 	//API key
-	apiKey := "AIzaSyBZDcFHZluTvIqPCkX61cKJN7W3SV6KPzM"
+	apiKey := os.Getenv("YOUTUBE_API_KEY")
 	apiURL := fmt.Sprintf("https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%s&key=%s&maxResults=%d", query, apiKey, maxResults)
 
 	resp, err := http.Get(apiURL)
