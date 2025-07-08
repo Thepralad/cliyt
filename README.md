@@ -91,15 +91,6 @@ cliyt > exit
 
 ---
 
-## Security Notice
-
-This tool hardcodes an API key, which is insecure for production use. To secure your key:
-
-* Load it from an environment variable or `.env` file
-* Avoid committing your key to version control
-
----
-
 ## Design Highlights
 
 * Uses YouTube Data API v3 for fetching search results and durations
